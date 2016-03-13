@@ -50,10 +50,6 @@ public class GenerateQRCode extends AppCompatActivity
         intent.putExtra("ENCODE_TYPE", "TEXT_TYPE");
         intent.putExtra("ENCODE_DATA", lectureId);
 
-        // Refactored code - Not needed anymore due to only needing one piece of data attached
-        //intent.putExtra("ENCODE_DATA2", "Lecturer - Mark Snaith");
-        //intent.putExtra("ENCODE_DATA3", "Time - 2:15pm");
-
         // try catch block to try passing the intent to the 3rd party app (referenced in main).
         try
         {

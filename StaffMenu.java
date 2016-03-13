@@ -58,7 +58,7 @@ public class StaffMenu extends AppCompatActivity
                 };
 
         // creates an adapter to be used alongside the staff list view
-        final ArrayAdapter<String> staffMenuAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.staff_list_view, android.R.id.text1, staffOptions);
+        final ArrayAdapter<String> staffMenuAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.staff_list_view, android.R.id.text1, staffOptions);
 
         // assign adapter to view by passing in our adapter
         staffMenu.setAdapter(staffMenuAdapter);
@@ -68,11 +68,8 @@ public class StaffMenu extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                // used to keep track of which position in the array was clicked
-                int intPosition = position;
-
-                // takes the list item and converts it to string, then stores it
-                String userOption = staffMenu.getItemAtPosition(intPosition).toString();
+                // takes the list item that was selected and stores it
+                String userOption = String.valueOf(staffMenu.getItemAtPosition(position));
 
                 switch(position)
                 {

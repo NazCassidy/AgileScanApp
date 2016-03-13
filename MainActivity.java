@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity
         dualLogin = (Button) findViewById(R.id.dualLoginButton);
         //Get the two edit texts
         loginDetails = (EditText) findViewById(R.id.loginDetails);
-        passwordDetails = (EditText) findViewById(R.id.passwordDetails);;
+        passwordDetails = (EditText) findViewById(R.id.passwordDetails);
         // create button events
         dualLogin.setOnClickListener(new View.OnClickListener()
         {
@@ -112,6 +112,10 @@ public class MainActivity extends AppCompatActivity
                             um.setId(loginDetails.getText().toString());
                             um.setAccesslevel(response);
                         }
+                        else if(response.equals("failed"))
+                        {
+                            um.setAccesslevel(response);
+                        }
 
                         //Check the users access level and then go to the necessary area after that
                         if (um.getAccesslevel().equals("staff"))
@@ -123,14 +127,14 @@ public class MainActivity extends AppCompatActivity
                         {
                             startStudentScan();
                         }
-                        else
+                        else if (um.getAccesslevel().equals("failed"))
                         {
-                            Toast.makeText(getApplicationContext(), "Wrong details", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Email or password is incorrect", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
                 //Execute the code
-                processor.execute(loginRequest,loginDetails.getText().toString(), passwordDetails.getText().toString());
+                processor.execute(loginRequest, loginDetails.getText().toString(), passwordDetails.getText().toString());
             }
         });
 
@@ -186,7 +190,7 @@ public class MainActivity extends AppCompatActivity
     // retrieves the scan results and processes them
     public void onActivityResult(int requestCode, int resultCode, Intent intent)
     {
-        String userName = loginDetails.getText().toString();
+        String userName = String.valueOf(loginDetails.getText());
 
         // retrieve the results below
         // this parses the result into an instance of the ZXing intent result class
@@ -230,14 +234,16 @@ public class MainActivity extends AppCompatActivity
 
     // STANDARD BLANK ACTIVITY CODE
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
+        {
             return true;
         }
 
