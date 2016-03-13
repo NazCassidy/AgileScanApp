@@ -57,7 +57,7 @@ public class StudentScanRequest extends AppCompatActivity
             final String lectureId = scanData.getString("Content");
             final String userName = scanData.getString("UserName");
 
-            String attendanceRequest = "Attendance";
+            String attendanceRequest = getString(R.string.attendance_request);
 
             //CODE FOR ASYNC HTTP POST ADAPTED FROM
             //stackoverflow.com/questions/7860538 by Mitsuaki Ishimoto

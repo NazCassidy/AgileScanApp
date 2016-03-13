@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v)
             {
 
-                String loginRequest = "Login";
+                final String loginRequest = getString(R.string.login_request);
 
                 //CODE FOR ASYNC HTTP POST ADAPTED FROM
                 //stackoverflow.com/questions/7860538 by Mitsuaki Ishimoto
@@ -112,11 +112,10 @@ public class MainActivity extends AppCompatActivity
                             um.setId(loginDetails.getText().toString());
                             um.setAccesslevel(response);
                         }
-                        else if(response.equals("failed"))
+                        else if (response.equals("failed"))
                         {
                             um.setAccesslevel(response);
                         }
-
 
                         //Check the users access level and then go to the necessary area after that
                         if (um.getAccesslevel().equals("staff"))
@@ -135,7 +134,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
                 //Execute the code
-                processor.execute(loginRequest, loginDetails.getText().toString(), passwordDetails.getText().toString());
+                processor.execute(loginRequest,loginDetails.getText().toString(), passwordDetails.getText().toString());
             }
         });
 
@@ -235,16 +234,14 @@ public class MainActivity extends AppCompatActivity
 
     // STANDARD BLANK ACTIVITY CODE
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings)
-        {
+        if (id == R.id.action_settings) {
             return true;
         }
 
