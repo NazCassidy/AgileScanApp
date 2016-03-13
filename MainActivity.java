@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity
                             um.setAccesslevel(response);
                         }
 
+
                         //Check the users access level and then go to the necessary area after that
                         if (um.getAccesslevel().equals("staff"))
                         {
